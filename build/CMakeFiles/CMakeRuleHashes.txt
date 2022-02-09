@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+ea7b65f77f8aca1caabb1d676889f96f tiger-grammar.tab.cpp
+abbc71866da09395eab93f1f01cf336a tiger-lex.yy.cpp

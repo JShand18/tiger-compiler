@@ -34,7 +34,7 @@
 //  * the "A_stringExp" has a C++ string, not a C-style char *
 //  * all AST nodes now have a "pos" associated with them
 //
-// HEIRARCHY OF AST NODE TYPES:
+// HEIRARCHY OF AST NODE TYPES: (Add Pararenthese node)
 //
 //	AST_node_
 //		A_exp_
@@ -155,7 +155,7 @@
 
 
 #if ! defined _AST_H
-#define _AST_H
+#define S_AST_H
 
 #include "errormsg.h"
 typedef Position A_pos;

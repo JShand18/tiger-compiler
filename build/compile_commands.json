@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/tiger-grammar.tab.cpp.o -c /homes/jshand/cs350/tiger/build/tiger-grammar.tab.cpp",
+  "file": "/homes/jshand/cs350/tiger/build/tiger-grammar.tab.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/tiger-lex.yy.cpp.o -c /homes/jshand/cs350/tiger/build/tiger-lex.yy.cpp",
+  "file": "/homes/jshand/cs350/tiger/build/tiger-lex.yy.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/AST.cpp.o -c /homes/jshand/cs350/tiger/AST.cpp",
+  "file": "/homes/jshand/cs350/tiger/AST.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/AST-print-attributes.cpp.o -c /homes/jshand/cs350/tiger/AST-print-attributes.cpp",
+  "file": "/homes/jshand/cs350/tiger/AST-print-attributes.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/AST-print.cpp.o -c /homes/jshand/cs350/tiger/AST-print.cpp",
+  "file": "/homes/jshand/cs350/tiger/AST-print.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/depth.cpp.o -c /homes/jshand/cs350/tiger/depth.cpp",
+  "file": "/homes/jshand/cs350/tiger/depth.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/errormsg.cpp.o -c /homes/jshand/cs350/tiger/errormsg.cpp",
+  "file": "/homes/jshand/cs350/tiger/errormsg.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/height.cpp.o -c /homes/jshand/cs350/tiger/height.cpp",
+  "file": "/homes/jshand/cs350/tiger/height.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/HERA_code.cpp.o -c /homes/jshand/cs350/tiger/HERA_code.cpp",
+  "file": "/homes/jshand/cs350/tiger/HERA_code.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/layout_frames.cpp.o -c /homes/jshand/cs350/tiger/layout_frames.cpp",
+  "file": "/homes/jshand/cs350/tiger/layout_frames.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/parent.cpp.o -c /homes/jshand/cs350/tiger/parent.cpp",
+  "file": "/homes/jshand/cs350/tiger/parent.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/result_reg.cpp.o -c /homes/jshand/cs350/tiger/result_reg.cpp",
+  "file": "/homes/jshand/cs350/tiger/result_reg.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/static_checks.cpp.o -c /homes/jshand/cs350/tiger/static_checks.cpp",
+  "file": "/homes/jshand/cs350/tiger/static_checks.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/ST.cpp.o -c /homes/jshand/cs350/tiger/ST.cpp",
+  "file": "/homes/jshand/cs350/tiger/ST.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/tiger.cpp.o -c /homes/jshand/cs350/tiger/tiger.cpp",
+  "file": "/homes/jshand/cs350/tiger/tiger.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/tigerParseDriver.cpp.o -c /homes/jshand/cs350/tiger/tigerParseDriver.cpp",
+  "file": "/homes/jshand/cs350/tiger/tigerParseDriver.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/typecheck.cpp.o -c /homes/jshand/cs350/tiger/typecheck.cpp",
+  "file": "/homes/jshand/cs350/tiger/typecheck.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/types.cpp.o -c /homes/jshand/cs350/tiger/types.cpp",
+  "file": "/homes/jshand/cs350/tiger/types.cpp"
+},
+{
+  "directory": "/homes/jshand/cs350/tiger/build",
+  "command": "/usr/bin/c++   -I/homes/jshand/cs350/tiger/build -I/homes/jshand/cs350/tiger -I/home/courses/include -I/homes/jshand/cs350/tiger/../HaverfordCS/include  -g   -std=gnu++2a -o CMakeFiles/tiger.dir/util.cpp.o -c /homes/jshand/cs350/tiger/util.cpp",
+  "file": "/homes/jshand/cs350/tiger/util.cpp"
+}
+]

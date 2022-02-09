@@ -113,10 +113,16 @@ real	[0-9]+\.[0-9]*(e-?[0-9]+)?
 
 [ \t]	{ loc.step(); }
 [\n\r]	{ loc.lines(yyleng); loc.step(); }
+\/\*[^/]*\*\/	{ loc.step(); }
 
 
 \+		{ return yy::tigerParser::make_PLUS(loc); }
 \*		{ return yy::tigerParser::make_TIMES(loc); }
+\-      { return yy::tigerParser::make_MINUS(loc); }
+\(      { return yy::tigerParser::make_LPAREN(loc); }
+\)      { return yy::tigerParser::make_RPAREN(loc); }
+
+printint {return yy::tigerParser::make_ID(yytext, loc); }
 
 {integer}	{
    return yy::tigerParser::make_INT(textToInt(yytext), loc);

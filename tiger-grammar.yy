@@ -35,7 +35,7 @@ class tigerParseDriver;
 
 %token 
   COMMA COLON SEMICOLON LPAREN RPAREN L_SQUARE_BRACKET R_SQUARE_BRACKET 
-  L_CURLY_BRACE R_CURLY_BRACE
+  L_CURLY_BRACE R_CURLY_BRACE 
   ARRAY IF THEN ELSE WHILE FOR TO DO LET IN END_LET OF 
   BREAK NIL
   FUNCTION VAR TYPE DOT
@@ -44,7 +44,7 @@ class tigerParseDriver;
 
 /* precedence (stickiness) ... put the stickiest stuff at the bottom of the list */
 
-%left PLUS 
+%left PLUS MINUS
 %left TIMES
 
 /* Attributes types for nonterminals are next, e.g. struct's from tigerParseDriver.h */
@@ -64,6 +64,10 @@ program: exp[main]	{ EM_debug("Got the main expression of our tiger program.", $
 		 			  driver.AST = new A_root_($main.AST);
 		 			}
 	;
+// Lecture notes 2/1:
+// 		Using the PTattr structue to compute a parse tree
+// 		$$.type = Ty_int(), $$height = 1 (To think about)
+// 		Down the line use the type to produce a typechecker error
 
 exp:  INT[i]					{ $$.AST = A_IntExp(Position::fromLex(@i), $i);
 								  EM_debug("Got int " + str($i), $$.AST->pos());
@@ -75,6 +79,25 @@ exp:  INT[i]					{ $$.AST = A_IntExp(Position::fromLex(@i), $i);
 	| exp[exp1] TIMES exp[exp2]	{ $$.AST = A_OpExp(Position::range($exp1.AST->pos(), $exp2.AST->pos()),
 												   A_timesOp, $exp1.AST,$exp2.AST);
 								  EM_debug("Got times expression.", $$.AST->pos());
+								}
+	| exp[exp1] MINUS exp[exp2] { $$.AST = A_OpExp(Position::range($exp1.AST->pos(), $exp2.AST->pos()),
+	                                               A_minusOp, $exp1.AST,$exp2.AST);
+	                              EM_debug("Got minus expression.", $$.AST->pos());
+	                            }
+	| LPAREN exp[exp1] RPAREN   { $$.AST = $exp1.AST;
+	                              EM_debug("Got parentheses.", $$.AST->pos());
+	                            }
+
+exp: STRING[i]					{$$.AST = A_StringExp(Position::fromLex(@i), $i);
+								 EM_debug("Got string " + $i, $$.AST->pos());
+								}
+	| ID LPAREN exp[exp1] RPAREN 	{$$.AST = A_CallExp($exp1.AST->pos(), 
+									to_Symbol($ID),
+									A_ExpList($exp1.AST, 0));
+									EM_debug("Got Function"+ $ID, $$.AST->pos());
+									}
+
+
 //
 // Note: In older compiler tools, instead of writing $exp1 and $exp2, we'd write $1 and $3,
 //        to refer to the first and third elements on the right-hand-side of the production.
@@ -85,7 +108,7 @@ exp:  INT[i]					{ $$.AST = A_IntExp(Position::fromLex(@i), $i);
 //        so we could use @exp1 to get it's information about the locations of exp1
 //        writing, e.g., Position::fromLex(@exp1) or instead of $exp1.AST->pos()
 //
-			  					}
+
 	;
 
 %%

@@ -1,0 +1,3 @@
+/homes/jshand/cs350/tiger/build/CMakeFiles/rebuild_cache.dir
+/homes/jshand/cs350/tiger/build/CMakeFiles/edit_cache.dir
+/homes/jshand/cs350/tiger/build/CMakeFiles/tiger.dir
