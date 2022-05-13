@@ -22,10 +22,29 @@ void A_opExp_::set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_paren
 	stored_parent = my_parent_or_null_if_i_am_the_root;
 	// now, tell my children to record me as theirs... they'll tell the grandkids
 	_right->set_parent_pointers_for_me_and_my_descendants(this);
-	 _left->set_parent_pointers_for_me_and_my_descendants(this);
+	_left->set_parent_pointers_for_me_and_my_descendants(this);
 }
 
+void A_seqExp_::set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent_or_null_if_i_am_the_root)
+{
+	stored_parent = my_parent_or_null_if_i_am_the_root;
+	_seq->set_parent_pointers_for_me_and_my_descendants(this);
+}
 
+void A_callExp_::set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent_or_null_if_i_am_the_root)
+{
+	stored_parent = my_parent_or_null_if_i_am_the_root;
+	_args->set_parent_pointers_for_me_and_my_descendants(this);
+}
+
+void A_expList_::set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent_or_null_if_i_am_the_root)
+{
+	stored_parent = my_parent_or_null_if_i_am_the_root;
+	_head->set_parent_pointers_for_me_and_my_descendants(this);
+	if (_tail != 0){
+	 	_tail->set_parent_pointers_for_me_and_my_descendants(this);
+	}
+}
 
 // The following should never be called, but this "general" version
 //   lets us compile and test some things without having to fill in the set_parent_pointers stuff first

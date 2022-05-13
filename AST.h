@@ -155,7 +155,7 @@
 
 
 #if ! defined _AST_H
-#define S_AST_H
+#define _AST_H
 
 #include "errormsg.h"
 typedef Position A_pos;
@@ -221,6 +221,7 @@ public:
 	// And now, the attributes that exist in ALL kinds of AST nodes.
 	//  See Design_Documents/AST_Attributes.txt for details.
 	virtual string HERA_code();  // defaults to a warning, with HERA code that would error if compiled; could be "=0" in final compiler
+	virtual string HERA_data();
 
 	int height();  // example we'll play with in class, not actually needed to compile
 	virtual int compute_height();  // just for an example, not needed to compile
@@ -249,13 +250,27 @@ public:
 	string result_reg_s() { // return in string form, e.g. "R2"
 		return "R" + std::to_string(this->result_reg());
 	}
-	virtual int init_result_reg();
+
+	int unique_label(){
+			if (this->stored_unique_label < 0) this->stored_unique_label = this->init_unique_label();
+		return stored_unique_label;
+	}
+
+	string unique_label_s() { // return in string form, e.g. "R2"
+		return std::to_string(this->unique_label());
+	}
+
 
 	// we'll need to print the register number attribute for exp's
 	virtual String attributes_for_printing();
+    virtual int init_result_reg();
+    virtual int init_unique_label();
+    virtual Ty_ty typecheck();
+	// Ty_ty for types from type.h
 
 private:
 	int stored_result_reg = -1;  // Initialize to -1 to be sure it gets replaced by "if" in result_reg() above
+	int stored_unique_label = -1;
 };
 
 class A_root_ : public AST_node_ {
@@ -264,8 +279,10 @@ public:
 	A_exp *main();
 
 	string HERA_code();
+	string HERA_data();
 	AST_node_ *parent();	// We should never call this
 	string print_rep(int indent, bool with_attributes);
+	virtual Ty_ty typecheck();
 
 	virtual void set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent);  // should not be called, since it's in-line in the constructor
 	virtual int compute_depth();  // just for an example, not needed to compile
@@ -307,8 +324,12 @@ class A_intExp_ : public A_leafExp_ {
 public:
 	A_intExp_(A_pos pos, int i);
 	virtual string print_rep(int indent, bool with_attributes);
-
 	virtual string HERA_code();
+	virtual string HERA_data();
+	virtual int init_result_reg();
+	virtual int sethi_ulman();
+	virtual Ty_ty typecheck();
+
 private:
 	int value;
 };
@@ -317,6 +338,12 @@ class A_stringExp_ : public A_leafExp_ {
 public:
 	A_stringExp_(A_pos pos, String s);
 	virtual string print_rep(int indent, bool with_attributes);
+	virtual string HERA_data();
+	virtual string HERA_code();
+	virtual int init_result_reg();
+	virtual int sethi_ulman();
+	virtual Ty_ty typecheck();
+	
 private:
 	String value;
 };
@@ -357,6 +384,10 @@ public:
 	A_opExp_(A_pos pos, A_oper oper, A_exp left, A_exp right);
 	virtual string print_rep(int indent, bool with_attributes);
 	virtual string HERA_code();
+	virtual string HERA_data();
+	virtual int init_result_reg();
+	virtual int sethi_ulman();
+	virtual Ty_ty typecheck();
 
 	void set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent);
 	virtual int compute_height();  // just for an example, not needed to compile
@@ -388,6 +419,13 @@ class A_callExp_ : public A_exp_ {
 public:
 	A_callExp_(A_pos pos, Symbol func, A_expList args);
 	virtual string print_rep(int indent, bool with_attributes);
+	virtual string HERA_code();
+	virtual string HERA_data();
+	virtual int sethi_ulman();
+	virtual int init_result_reg();
+	virtual Ty_ty typecheck();
+
+	void set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent);
 private:
 	Symbol _func;
 	A_expList _args;
@@ -431,7 +469,14 @@ public:
 class A_seqExp_ : public A_controlExp_ {
 public:
 	A_seqExp_(A_pos pos, A_expList seq);
+	virtual string HERA_code();
+	virtual string HERA_data();
+	virtual int sethi_ulman();
+	virtual int init_result_reg();
+	virtual Ty_ty typecheck();
 	virtual string print_rep(int indent, bool with_attributes);
+
+	void set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent);
 private:
 	A_expList _seq;
 };
@@ -476,6 +521,14 @@ public:
 	int length();
 	A_exp _head;
 	A_expList _tail;
+
+	virtual string HERA_code();
+	virtual string HERA_data();
+	virtual int sethi_ulman();
+	virtual int init_result_reg();
+	virtual string result_reg_s();
+	virtual Ty_ty typecheck();
+	void set_parent_pointers_for_me_and_my_descendants(AST_node_ *my_parent);
 };
 
 // The componends of a A_recordExp, e.g. point{X = 4, Y = 12}

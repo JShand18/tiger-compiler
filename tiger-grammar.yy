@@ -45,10 +45,12 @@ class tigerParseDriver;
 /* precedence (stickiness) ... put the stickiest stuff at the bottom of the list */
 
 %left PLUS MINUS
-%left TIMES
+%left TIMES DIVIDE
+%left COMMA
 
 /* Attributes types for nonterminals are next, e.g. struct's from tigerParseDriver.h */
-%type <expAttrs>  exp
+%type <expAttrs> exp
+%type <seqAttrs> seq
 
 
 // The line below means our grammar must not have conflicts
@@ -63,7 +65,7 @@ class tigerParseDriver;
 program: exp[main]	{ EM_debug("Got the main expression of our tiger program.", $main.AST->pos());
 		 			  driver.AST = new A_root_($main.AST);
 		 			}
-	;
+	
 // Lecture notes 2/1:
 // 		Using the PTattr structue to compute a parse tree
 // 		$$.type = Ty_int(), $$height = 1 (To think about)
@@ -72,30 +74,45 @@ program: exp[main]	{ EM_debug("Got the main expression of our tiger program.", $
 exp:  INT[i]					{ $$.AST = A_IntExp(Position::fromLex(@i), $i);
 								  EM_debug("Got int " + str($i), $$.AST->pos());
 								}
+	| STRING[i]					{$$.AST = A_StringExp(Position::fromLex(@i), $i);
+								  EM_debug("Got string " + $i, $$.AST->pos());
+								}
 	| exp[exp1] PLUS exp[exp2]	{ $$.AST = A_OpExp(Position::range($exp1.AST->pos(), $exp2.AST->pos()),
 												   A_plusOp,  $exp1.AST,$exp2.AST);
 								  EM_debug("Got plus expression.", $$.AST->pos());
 								}
 	| exp[exp1] TIMES exp[exp2]	{ $$.AST = A_OpExp(Position::range($exp1.AST->pos(), $exp2.AST->pos()),
-												   A_timesOp, $exp1.AST,$exp2.AST);
+											   A_timesOp, $exp1.AST,$exp2.AST);
 								  EM_debug("Got times expression.", $$.AST->pos());
 								}
 	| exp[exp1] MINUS exp[exp2] { $$.AST = A_OpExp(Position::range($exp1.AST->pos(), $exp2.AST->pos()),
 	                                               A_minusOp, $exp1.AST,$exp2.AST);
-	                              EM_debug("Got minus expression.", $$.AST->pos());
-	                            }
-	| LPAREN exp[exp1] RPAREN   { $$.AST = $exp1.AST;
-	                              EM_debug("Got parentheses.", $$.AST->pos());
+								  EM_debug("Got minus expression.", $$.AST->pos());
 	                            }
 
-exp: STRING[i]					{$$.AST = A_StringExp(Position::fromLex(@i), $i);
-								 EM_debug("Got string " + $i, $$.AST->pos());
+	| exp[exp1] DIVIDE exp[exp2] { $$.AST = A_CallExp($exp1.AST->pos(),
+										to_Symbol("div"),
+										A_ExpList($exp1.AST, A_ExpList($exp2.AST, 0)));
+								EM_debug("Got divison expression" , $$.AST->pos());	
 								}
+
 	| ID LPAREN exp[exp1] RPAREN 	{$$.AST = A_CallExp($exp1.AST->pos(), 
 									to_Symbol($ID),
 									A_ExpList($exp1.AST, 0));
-									EM_debug("Got Function"+ $ID, $$.AST->pos());
+									EM_debug("Got Function "+ $ID, $$.AST->pos());
 									}
+	| LPAREN seq[seq1] RPAREN   {$$.AST = A_SeqExp($seq1.AST->pos(), $seq1.AST);
+								EM_debug("Got Sequence", $$.AST->pos());
+								}
+
+seq: exp[exp1]					{$$.AST = A_ExpList($exp1.AST, 0);
+								EM_debug("Got expression", $$.AST->pos());
+								}
+	| exp[exp1] SEMICOLON seq[exp2] {$$.AST = A_ExpList($exp1.AST, $exp2.AST);
+									}
+	| exp[exp1] COMMA seq[exp2]
+    							 { $$.AST = A_ExpList($exp1.AST, $exp2.AST);
+    							    }
 
 
 //

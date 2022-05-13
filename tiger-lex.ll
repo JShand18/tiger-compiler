@@ -55,6 +55,33 @@ static int textToInt(std::string the_text)  // a C-style array of char will be c
 	// return to_int(the_text);
 }
 
+static string textToString(std::string the_text){
+
+	std::string string_text = "";
+
+	for (unsigned int i=0; i<the_text.length(); i++){
+		
+		char curr_char = the_text[i];
+		if (curr_char != '\"') {
+			if (curr_char == '\\'){
+				if (the_text[i+1] == 'n'){
+					string_text += char(10);
+					i++;
+				}
+				else if (the_text[i+1] == 't'){
+					string_text += char(9);
+					i++;
+				}
+			}
+			else {
+				string_text += the_text[i];
+			}
+		}
+	}
+
+    return string_text;
+}
+
 
 // This uses some stuff created by flex, so it's easiest to just put it here.
 int tigerParseDriver::parse (const std::string &f)
@@ -88,6 +115,7 @@ int tigerParseDriver::parse (const std::string &f)
 
 
 integer	[0-9]+
+string \"([^\\"]|(\\[nt\"])*)*\"
 
 /* real numbers don't occur in tiger, but if they did,
    and we always wanted a "." with at least one numeral preceding it,
@@ -121,14 +149,22 @@ real	[0-9]+\.[0-9]*(e-?[0-9]+)?
 \-      { return yy::tigerParser::make_MINUS(loc); }
 \(      { return yy::tigerParser::make_LPAREN(loc); }
 \)      { return yy::tigerParser::make_RPAREN(loc); }
+\;      { return yy::tigerParser::make_SEMICOLON(loc); }
+\/ 		{ return yy::tigerParser::make_DIVIDE(loc); }
+\, 		{ return yy::tigerParser::make_COMMA(loc); }
 
-printint {return yy::tigerParser::make_ID(yytext, loc); }
+printint { return yy::tigerParser::make_ID(yytext, loc);}
+print    { return yy::tigerParser::make_ID(yytext, loc);}
+mod 	 { return yy::tigerParser::make_ID(yytext, loc);}
+div 	 { return yy::tigerParser::make_ID(yytext, loc);}
 
 {integer}	{
    return yy::tigerParser::make_INT(textToInt(yytext), loc);
    /* textToInt is defined above */
    /* make_INT, make_END from example at https://www.gnu.org/software/bison/manual/html_node/Complete-Symbols.html#Complete-Symbols */	  
    }
+
+{string}  { return yy::tigerParser::make_STRING(textToString(yytext), loc);}
 
 \<[Ee][Oo][Ff]\>		{ return yy::tigerParser::make_END(loc); /* this RE matches the literal five characters <EOF>, regardless of upper/lower case   */ }
 <<EOF>>					{ return yy::tigerParser::make_END(loc); /* <<EOF>> is a flex built-in for an actual end of a file, when there is no more input */ }

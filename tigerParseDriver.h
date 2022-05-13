@@ -7,6 +7,12 @@ struct expAttrs {
 		Ty_ty type;
 		A_exp AST;
 };
+
+struct seqAttrs {
+		Ty_ty type;
+		A_expList AST;
+
+};
 // Notes from 2/1 lecture:
 // 		define a structure PTattr with height and value attributes
 // 		used to label nodes for the parse tree

@@ -44,28 +44,6 @@ string
 logic.h
 -
 
-/home/courses/include/hc_list.h
-iostream
--
-logic.h
--
-hc_list.t
--
-
-/home/courses/include/hc_list.t
-
-/home/courses/include/hc_list_helpers.h
-hc_list.h
--
-functional
--
-iostream
--
-hc_list_helpers.t
--
-
-/home/courses/include/hc_list_helpers.t
-
 /home/courses/include/logic.h
 assert.h
 -
@@ -121,14 +99,6 @@ AST_appel.h
 /homes/jshand/cs350/tiger/HERA_code.cpp
 AST.h
 /homes/jshand/cs350/tiger/AST.h
-
-/homes/jshand/cs350/tiger/ST.cpp
-logic.h
--
-errormsg.h
-/homes/jshand/cs350/tiger/errormsg.h
-ST.h
-/homes/jshand/cs350/tiger/ST.h
 
 /homes/jshand/cs350/tiger/ST.h
 symbol.h
@@ -191,20 +161,6 @@ unistd.h
 /homes/jshand/cs350/tiger/depth.cpp
 AST.h
 /homes/jshand/cs350/tiger/AST.h
-
-/homes/jshand/cs350/tiger/errormsg.cpp
-cstdlib
--
-iostream
--
-util.h
-/homes/jshand/cs350/tiger/util.h
-errormsg.h
-/homes/jshand/cs350/tiger/errormsg.h
-sstream
--
-stdio.h
--
 
 /homes/jshand/cs350/tiger/errormsg.h
 util.h
@@ -279,20 +235,6 @@ typecheck.h
 /homes/jshand/cs350/tiger/typecheck.h
 
 /homes/jshand/cs350/tiger/typecheck.h
-
-/homes/jshand/cs350/tiger/types.cpp
-iostream
--
-hc_list.h
--
-hc_list_helpers.h
--
-errormsg.h
-/homes/jshand/cs350/tiger/errormsg.h
-util.h
-/homes/jshand/cs350/tiger/util.h
-types.h
-/homes/jshand/cs350/tiger/types.h
 
 /homes/jshand/cs350/tiger/types.h
 symbol.h
